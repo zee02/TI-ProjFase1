@@ -1,0 +1,24 @@
+.img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.float-container {
+    border: 3px solid #fff;
+    padding: 10px;
+}
+
+.float-child {
+    width: 50%;
+    float: left;
+    padding: 1px;
+}
+
+#logo{
+   height: 150px;
+}
+
+#navbarNav{
+    float: right;
+}

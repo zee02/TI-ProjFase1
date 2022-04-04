@@ -1,8 +1,8 @@
 <?php 
 session_start();
+$invalido = null;
 $username_admin = "admin";
 $password_admin = "admin";
-
 $username_worker = "worker";
 $password_worker = "worker";
 
@@ -59,7 +59,13 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
                         <div class="form-group">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="customControlInline">
-                                <?php echo $invalido ?>
+                                <?php
+                                if($invalido != null){
+                                    echo $invalido;
+                                } else {
+                                }
+                                
+                                ?>
                             </div>
                         </div>
                         <div class="d-flex justify-content-center mt-3 login_container">
