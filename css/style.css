@@ -1,4 +1,3 @@
-	/* Coded with love by Mutiullah Samim */
     body,
     html {
         margin: 0;
@@ -68,3 +67,50 @@
     .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
         background-color: #c0392b !important;
     }
+
+    /*Código da dashboard*/
+
+    .logotipo{
+        width: 100px;
+    }
+
+    #navbarNav ul li a{
+        color: orange;
+    }
+
+    #navbarNav ul li a:hover{
+        color: #c0392b;
+    }
+
+    #navbarNav ul li a.active{
+        color: #c0392b;
+    }
+
+    #navbarNav ul li a.active:hover{
+        color: #660103;
+    }
+
+    .btn, .btn:hover{
+        border: 1px solid #c0392b;
+    }
+
+    .btn a{
+        text-decoration:none;
+    }
+
+    .container{
+        margin-bottom: 20px;
+    }
+
+    .borda{
+        border: 1px solid #c0392b;
+    }
+
+    .card-header{
+        color: orange;
+    }
+
+    .espaco{
+        margin-right: 10px;
+    }
+    

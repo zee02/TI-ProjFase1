@@ -1,11 +1,8 @@
 <?php
 include 'nav.php';
-session_start();
-if (!isset($_SESSION['username'])) {
-    header("refresh:5;url=index.php");
-    die("Acesso restrito.");
+if (session_status() == PHP_SESSION_DISABLED) {
+    session_start();
 }
-
 //Logs para os sensores
 $get_logs_temp = file_get_contents("api/files/temperatura/log.txt");
 $get_logs_humidade = file_get_contents("api/files/humidade/log.txt");
@@ -67,7 +64,7 @@ array_pop($get_logs_porta);
                 echo "<tr>";
                 echo "<td>" . $nome_temperatura . "</td>";
                 echo "<td>" . $gt[0] . "</td>";
-                echo "<td>" . $gt[1] . "º" . "</td>";
+                echo "<td>" . $gt[1] . "%" . "</td>";
                 echo "</tr>";
             }
             ?>
@@ -77,7 +74,7 @@ array_pop($get_logs_porta);
                 echo "<tr>";
                 echo "<td>" . $nome_porta . "</td>";
                 echo "<td>" . $gp[0] . "</td>";
-                echo "<td>" . $gp[1] . "º" . "</td>";
+                echo "<td>" . $gp[1] . " pessoas" . "</td>";
                 echo "</tr>";
             }
             ?>
