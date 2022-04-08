@@ -5,6 +5,7 @@
         height: 100%;
         background: white !important;
     }
+    /*css para a card de login*/
     .user_card {
         height: 400px;
         width: 350px;
@@ -22,6 +23,7 @@
         border-radius: 5px;
 
     }
+    /*css para o container do logo da "empresa" no card do login*/
     .brand_logo_container {
         position: absolute;
         height: 170px;
@@ -32,12 +34,14 @@
         padding: 10px;
         text-align: center;
     }
+    /*css para o logo da "empresa" no card do login*/
     .brand_logo {
         height: 150px;
         width: 150px;
         border-radius: 50%;
         border: 2px solid black;
     }
+    /*Css para o form, botão de login e inputs*/
     .form_container {
         margin-top: 100px;
     }
@@ -63,9 +67,6 @@
     .input_pass:focus {
         box-shadow: none !important;
         outline: 0px !important;
-    }
-    .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
-        background-color: #c0392b !important;
     }
 
     /*Código da dashboard*/
