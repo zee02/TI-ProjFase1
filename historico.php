@@ -1,5 +1,4 @@
 <?php
-include 'nav.php';
 if (session_status() == PHP_SESSION_DISABLED) {
     session_start();
 }
@@ -36,48 +35,124 @@ array_pop($get_logs_porta);
 
 ?>
 
-<!--TABELA DE INFORMAÇÃO-->
-<div class="container">
-    <table class="table">
-        <thead>
-            <tr>
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="authors" content="Gonçalo Pestana e José Fernandes">
+	    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	    <link href="css\style.css" rel="stylesheet">
+	    <title>Histórico</title>
+    </head>
 
-                <th scope="col">Tipo de Sensor</th>
-                <th scope="col">Data de Medição</th>
-                <th scope="col">Valor</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            foreach ($get_logs_humidade as $gh) {
-                $gh = explode(';', $gh);
-                echo "<tr>";
-                echo "<td>" . $nome_humidade . "</td>";
-                echo "<td>" . $gh[0] . "</td>";
-                echo "<td>" . $gh[1] . "º" . "</td>";
-                echo "</tr>";
-            }
-            ?>
-            <?php
-            foreach ($get_logs_temp as $gt) {
-                $gt = explode(';', $gt);
-                echo "<tr>";
-                echo "<td>" . $nome_temperatura . "</td>";
-                echo "<td>" . $gt[0] . "</td>";
-                echo "<td>" . $gt[1] . "%" . "</td>";
-                echo "</tr>";
-            }
-            ?>
-            <?php
-            foreach ($get_logs_porta as $gp) {
-                $gp = explode(';', $gp);
-                echo "<tr>";
-                echo "<td>" . $nome_porta . "</td>";
-                echo "<td>" . $gp[0] . "</td>";
-                echo "<td>" . $gp[1] . " pessoas" . "</td>";
-                echo "</tr>";
-            }
-            ?>
-        </tbody>
-    </table>
-</div>
+    <body>
+    <?php include 'nav.php'; ?>
+
+<!--TABELA COM INFORMAÇÃO DO SENSOR DE HUMIDADE-->
+    <div class="container">
+        <div class="card" style="margin-top: 20px">
+            <div class="card-header borda">
+                <b><?php  echo "<td>" . $nome_humidade . "</td>" ?></b>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <b>Data de Medição</b>
+                                </th>
+
+                                <th>
+                                    <b>Valor</b>
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <?php
+                            foreach ($get_logs_humidade as $gh) {
+                                $gh = explode(';', $gh);
+                                echo "<tr>";
+                                echo "<td>" . $gh[0] . "</td>";
+                                echo "<td>" . $gh[1] . "º" . "</td>";
+                                echo "</tr>";
+                            }
+                        ?>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+<!--TABELA COM INFORMAÇÃO DO SENSOR DE TEMPERATURA-->
+        <div class="card" style="margin-top: 20px">
+            <div class="card-header borda">
+                <b><?php  echo "<td>" . $nome_temperatura . "</td>" ?></b>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <b>Data de Medição</b>
+                                </th>
+
+                                <th>
+                                    <b>Valor</b>
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <?php
+                            foreach ($get_logs_temp as $gh) {
+                                $gh = explode(';', $gh);
+                                echo "<tr>";
+                                echo "<td>" . $gh[0] . "</td>";
+                                echo "<td>" . $gh[1] . "º" . "</td>";
+                                echo "</tr>";
+                            }
+                        ?>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+<!--TABELA COM INFORMAÇÃO DO SENSOR DE ENTRADA-->
+        <div class="card" style="margin-top: 20px">
+            <div class="card-header borda">
+                <b><?php  echo "<td>" . $nome_porta . "</td>" ?></b>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <b>Data de Medição</b>
+                                </th>
+
+                                <th>
+                                    <b>Valor</b>
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <?php
+                            foreach ($get_logs_porta as $gh) {
+                                $gh = explode(';', $gh);
+                                echo "<tr>";
+                                echo "<td>" . $gh[0] . "</td>";
+                                echo "<td>" . $gh[1] . " pessoas" . "</td>";
+                                echo "</tr>";
+                            }
+                        ?>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    </body>
+</html>

@@ -1,22 +1,29 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
 
+#Código para Armazenar dados relacionados com o sensor de temperatura em variáveis
 $valor_temperatura = file_get_contents("files/temperatura/valor.txt");
 $hora_temperatura = file_get_contents("files/temperatura/hora.txt");
 $log_temperatura = file_get_contents("files/temperatura/log.txt");
 $nome_temperatura = file_get_contents("files/temperatura/nome.txt");
 
+#Código para Armazenar dados relacionados com o sensor de humidade em variáveis
 $valor_humidade = file_get_contents("files/humidade/valor.txt");
 $hora_humidade = file_get_contents("files/humidade/hora.txt");
 $log_humidade = file_get_contents("files/humidade/log.txt");
 $nome_humidade = file_get_contents("files/humidade/nome.txt");
 
-
+#Código para Armazenar dados relacionados com o sensor de porta em variáveis
 $valor_porta = file_get_contents("files/porta/valor.txt");
 $hora_porta = file_get_contents("files/porta/hora.txt");
 $log_porta = file_get_contents("files/porta/log.txt");
 $nome_porta = file_get_contents("files/porta/nome.txt");
 
+/*
+Verifica o método que está a ser utilizado para enviar a informação para o 
+servidor e se tudo estiver correto escreve valores enviados pelos sensores em ficheiros.
+Senão, irá mostrar uma mensagem de erro.
+*/
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     print_r($_POST);
 
@@ -40,3 +47,4 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 } else {
     echo "metodo errado";
 }
+?>

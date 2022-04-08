@@ -1,12 +1,11 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-} else {
-    if (!isset($_SESSION['username'])) {
-        header("refresh: 5;url=index.php");
-        die("Acesso restrito.");
-    }
+#Verifica se o utilizador está a aceder à dashboard com sessão iniciada
+session_start();
+if(!isset($_SESSION['username'])){
+    header( "refresh: 5;url=index.php" );
+    die( "Acesso restrito." );
 }
+
 //Buscar os valores pretendidos dos ficheiros txt
 $valor_temperatura = file_get_contents("api/files/temperatura/valor.txt");
 $hora_temperatura = file_get_contents("api/files/temperatura/hora.txt");
@@ -32,7 +31,6 @@ $nome_porta = file_get_contents("api/files/porta/nome.txt");
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="Supermercado inteligente">
     <meta name="authors" content="Gonçalo Pestana e José Fernandes">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <link href="css\style.css" rel="stylesheet">
@@ -50,9 +48,9 @@ $nome_porta = file_get_contents("api/files/porta/nome.txt");
 
     <div class="container">
         <div class="row" style="text-align: center;">
-            <div class="col-sm-4">
+            <div class="col-sm-4 mb-3">
                 <div class="card-header borda">
-                    <b>Humidade: </b>
+                    <b>Humidade: <?php echo $valor_humidade ."º"; ?></b>
                 </div>
 
                 <div class="card-body borda">
@@ -61,9 +59,9 @@ $nome_porta = file_get_contents("api/files/porta/nome.txt");
             </div>
 
 
-            <div class="col-sm-4">
+            <div class="col-sm-4 mb-3">
                 <div class="card-header borda">
-                    <b>Temperatura: </b>
+                    <b>Temperatura: <?php echo $valor_temperatura ."º"; ?></b>
                 </div>
                 <div class="card-body borda">
                     <img src="images/temperatura.png" alt="Temperatura">
@@ -72,9 +70,9 @@ $nome_porta = file_get_contents("api/files/porta/nome.txt");
 
 
 
-            <div class="col-sm-4">
+            <div class="col-sm-4 mb-3">
                 <div class="card-header borda">
-                    <b>Porta: </b>
+                    <b>Porta: <?php echo $valor_porta ." pessoas"; ?></b>
                 </div>
 
                 <div class="card-body borda">
@@ -83,7 +81,7 @@ $nome_porta = file_get_contents("api/files/porta/nome.txt");
             </div>
         </div>
 
-        <!--Tabela-->
+        <!--Tabela de sensores-->
 
         <div class="card" style="margin-top: 20px">
             <div class="card-header borda">
@@ -134,6 +132,7 @@ $nome_porta = file_get_contents("api/files/porta/nome.txt");
             </div>
         </div>
     </div>
+    <br>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 
