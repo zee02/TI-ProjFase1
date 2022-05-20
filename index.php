@@ -1,36 +1,6 @@
 <?php
 session_start();
-include('connection.php');  
-//VARIAVEIS DOS UTILIZADORES
-$invalido = null;
-$username_admin = $_POST['username'];  
-$password_admin = $_POST['password'];  
-
- //to prevent from mysqli injection  
- $username = stripcslashes($username);  
- $password = stripcslashes($password);  
- $username = mysqli_real_escape_string($con, $username);  
- $password = mysqli_real_escape_string($con, $password);  
-
- $sql = "select *from users where username = '$username' and password = '$password'";  
- $result = mysqli_query($con, $sql);  
- $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
- $count = mysqli_num_rows($result);  
-
-
-//SISTEMA DE LOGIN
-if (isset($_POST['username']) && isset($_POST['password'])) {
-    if ($count == 1) {
-        echo "Login com sucesso..." . "<br>";
-        header('Location: dashboard.php');
-    } else {
-        $invalido = "Login invalido...";
-    }
-} else {
-    $inserido = "Nada inserido...";
-}
 ?>
-
 <!DOCTYPE html>
 <html>
 
@@ -58,7 +28,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
                     </div>
                 </div>
                 <div class="d-flex justify-content-center form_container">
-                    <form method="post">
+                    <form action="login.php" method="post">
                         <div class="input-group mb-3">
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -75,9 +45,10 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="customControlInline">
                                 <?php
-                                if ($invalido != null) {
-                                    echo $invalido;
-                                }
+                                if (isset($_SESSION['not_auth'])): 
+                                    echo "Utilizador Inválido";
+                                endif;
+                                unset($_SESSION['not_auth']);
                                 ?>
                             </div>
                         </div>
