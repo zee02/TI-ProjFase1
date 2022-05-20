@@ -1,17 +1,27 @@
 <?php
 session_start();
+include('connection.php');  
 //VARIAVEIS DOS UTILIZADORES
 $invalido = null;
-$username_admin = "admin";
-$password_admin = "admin";
-$username_worker = "worker";
-$password_worker = "worker";
+$username_admin = $_POST['username'];  
+$password_admin = $_POST['password'];  
+
+ //to prevent from mysqli injection  
+ $username = stripcslashes($username);  
+ $password = stripcslashes($password);  
+ $username = mysqli_real_escape_string($con, $username);  
+ $password = mysqli_real_escape_string($con, $password);  
+
+ $sql = "select *from users where username = '$username' and password = '$password'";  
+ $result = mysqli_query($con, $sql);  
+ $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
+ $count = mysqli_num_rows($result);  
+
 
 //SISTEMA DE LOGIN
 if (isset($_POST['username']) && isset($_POST['password'])) {
-    if ($_POST['username'] == $username_admin && $_POST['password'] == $password_admin || $_POST['username'] == $username_worker && $_POST['password'] == $password_worker) {
+    if ($count == 1) {
         echo "Login com sucesso..." . "<br>";
-        $_SESSION["username"] = $_POST['username'];
         header('Location: dashboard.php');
     } else {
         $invalido = "Login invalido...";
