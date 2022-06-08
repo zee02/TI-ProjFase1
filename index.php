@@ -49,7 +49,7 @@ session_start();
                                     echo "Utilizador Inválido";
                                 endif;
                                 unset($_SESSION['not_auth']);
-                                ?>
+2                                ?>
                             </div>
                         </div>
                         <div class="d-flex justify-content-center mt-3 login_container">

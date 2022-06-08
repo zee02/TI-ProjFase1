@@ -1,7 +1,13 @@
 <?php
 #Verifica se o utilizador está a aceder à dashboard com sessão iniciada
 session_start();
-if (!isset($_SESSION['username'])) {
+include('connection.php'); 
+
+$query = "select permission_level from user where username = '{$_SESSION['username']}'";
+$result = mysqli_query($con, $query);
+$levelperm = mysqli_fetch_assoc($result);
+
+if ($levelperm['permission_level'] != 1) {
     header("refresh: 5;url=index.php");
     die("Acesso restrito.");
 }
