@@ -110,13 +110,13 @@ array_pop($get_logs_porta);
                         </thead>
 
                         <?php
-                        //Por cada log de temperatura que encontra no ficheiro
-                        foreach ($get_logs_temp as $gh) {
+                        //Por cada log da humidade que encontra no ficheiro
+                        foreach ($get_logs_temp as $gt) {
                             //Separa as frases onde se encontra o ;
-                            $gh = explode(';', $gh);
+                            $gt = explode(';', $gt);
                             echo "<tr>";
-                            echo "<td>" . $gh[0] . "</td>";
-                            echo "<td>" . $gh[1] . "º" . "</td>";
+                            echo "<td>" . $gt[0] . "</td>";
+                            echo "<td>" . $gt[1] . "º" . "</td>";
                             echo "</tr>";
                         }
                         ?>
@@ -144,14 +144,15 @@ array_pop($get_logs_porta);
                                 </th>
                             </tr>
                         </thead>
+
                         <?php
-                        //Por cada log da porta que encontra no ficheiro
-                        foreach ($get_logs_porta as $gh) {
+                        //Por cada log da humidade que encontra no ficheiro
+                        foreach ($get_logs_porta as $gp) {
                             //Separa as frases onde se encontra o ;
-                            $gh = explode(';', $gh);
+                            $gp = explode(';', $gp);
                             echo "<tr>";
-                            echo "<td>" . $gh[0] . "</td>";
-                            echo "<td>" . $gh[1] . " pessoas" . "</td>";
+                            echo "<td>" . $gp[0] . "</td>";
+                            echo "<td>" . $gp[1] . "º" . "</td>";
                             echo "</tr>";
                         }
                         ?>

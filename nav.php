@@ -4,7 +4,9 @@ if (session_status() == PHP_SESSION_NONE) {
 	session_start();
 }
 ?>
-
+<head>
+	<link rel="icon" href="images/logo.png">
+</head>
 <body>
 	<!--Barra de navegação-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
