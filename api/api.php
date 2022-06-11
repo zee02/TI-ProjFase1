@@ -1,15 +1,7 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
 
-$host = "localhost";  
-$user = "root";  
-$password = '';  
-$db_name = "projeto";  
-  
-$con = mysqli_connect($host, $user, $password, $db_name);  
-if(mysqli_connect_errno()) {  
-    die("Failed to connect with MySQL: ". mysqli_connect_error());  
-}  
+include('../connection.php');
 
 // #Código para Armazenar dados relacionados com o sensor de temperatura em variáveis
 // $valor_temperatura = file_get_contents("files/temperatura/valor.txt");
@@ -35,32 +27,30 @@ servidor e se tudo estiver correto escreve valores enviados pelos sensores em fi
 Senão, irá mostrar uma mensagem de erro.
 */
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    
-    if (isset($_POST["nome"]) && isset($_POST[ "hora"]) && isset($_POST["valor"])) {
-       $nome = $_POST["nome"];
-       $hora = $_POST["hora"];
-       $valor = $_POST["valor"];
-       $log = $_POST["hora"] . ";" . $_POST["valor"] . PHP_EOL; FILE_APPEND;
 
-       $query = "insert into {$nome} (hora,valor,log,nome) values ('{$hora}', '{$valor}', '{$log}', '{$nome}')";
+    if (isset($_POST["nome"]) && isset($_POST["hora"]) && isset($_POST["valor"])) {
+        $nome = $_POST["nome"];
+        $hora = $_POST["hora"];
+        $valor = $_POST["valor"];
+        $log = $_POST["hora"] . ";" . $_POST["valor"] . PHP_EOL;
+        FILE_APPEND;
 
-       mysqli_query($con, $query);
+        $query = "insert into {$nome} (hora,valor,log,nome) values ('{$hora}', '{$valor}', '{$log}', '{$nome}')";
+
+        mysqli_query($con, $query);
     } else {
         echo "Erro na API";
     }
- }  elseif ($_SERVER['REQUEST_METHOD'] == "GET") {
-     if (isset($_GET["nome"])) {
-         $nome = $_GET["nome"];
-         $sql = "select * from {$nome} ORDER BY id DESC LIMIT 1"; 
-         $query = $con->prepare($sql); 
-         $query->execute();
-         $result = $query->get_result(); 
-         $valor = $result->fetch_assoc();   
-         var_dump($valor);
-         
-     } else {
-         http_response_code(404);
-     }
- } else {
-     echo "metodo errado";
- }
+} elseif ($_SERVER['REQUEST_METHOD'] == "GET") {
+    if (isset($_GET["nome"])) {
+        $nome = $_GET["nome"];
+        $sql = "select * from {$nome} ORDER BY id DESC LIMIT 1";
+        $sql_run = $con->query($sql);
+        $row = $sql_run->fetch_assoc();
+        echo $row['valor'];
+    } else {
+        http_response_code(404);
+    }
+} else {
+    echo "metodo errado";
+}
