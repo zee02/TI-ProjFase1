@@ -25,17 +25,10 @@ $query_luminosidade = "select * from luminosidade ORDER BY id DESC LIMIT 1";
 $result = $con->query($query_luminosidade);
 $row_luminosidade = $result->fetch_array(MYSQLI_ASSOC);
 
-$query_pushbutton = "select * from pushbutton ORDER BY id DESC LIMIT 1";
-$result = $con->query($query_pushbutton);
-$row_pushbutton = $result->fetch_array(MYSQLI_ASSOC);
-
 $query_movimento = "select * from movimento ORDER BY id DESC LIMIT 1";
 $result = $con->query($query_movimento);
 $row_movimento = $result->fetch_array(MYSQLI_ASSOC);
 
-$query_rocketswitch = "select * from rocketswitch ORDER BY id DESC LIMIT 1";
-$result = $con->query($query_rocketswitch);
-$row_rocketswitch = $result->fetch_array(MYSQLI_ASSOC);
 
 $query_porta = "select * from porta ORDER BY id DESC LIMIT 1";
 $result = $con->query($query_porta);
@@ -45,9 +38,6 @@ $query_lampada = "select * from lampada ORDER BY id DESC LIMIT 1";
 $result = $con->query($query_lampada);
 $row_lampada = $result->fetch_array(MYSQLI_ASSOC);
 
-$query_aircooler = "select * from aircooler ORDER BY id DESC LIMIT 1";
-$result = $con->query($query_aircooler);
-$row_aircooler = $result->fetch_array(MYSQLI_ASSOC);
 ?>
 
 
@@ -197,7 +187,7 @@ $row_aircooler = $result->fetch_array(MYSQLI_ASSOC);
                 <div class="card">
                     <div class="card-header" style="text-align: center;"><b>WebCam</b></div>
                     <div class="card-body">
-                         <img src='images/webcam.png?id=".time()."' alt="webcam" id="webcam" style="width: 230px;"  class="img">
+                         <img src='images/webcam.jpg?id=".time()."' alt="webcam" id="webcam" style="width: 230px;"  class="img">
                     </div>
                     <div class="card-footer" style="text-align: center;">Atualização: <?php echo $row_lampada["hora"] ?> - <a href=”#”>Histórico</a></div>
                 </div>

@@ -10,7 +10,6 @@ def send_file():
     print(r.status_code, "--", r.text)
 
 r = get('http://127.0.0.1/TI-ProjFase1/api/api.php?nome=temperatura')
-
 try:
     while True:
         if r.status_code == 200:

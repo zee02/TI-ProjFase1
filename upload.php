@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 function upload()
 {
-    $target_dir = "lab02_icons/";
+    $target_dir = "images/";
     $target_file = $target_dir . basename($_FILES["imagem"]["name"]);
     move_uploaded_file($_FILES["imagem"]["tmp_name"], $target_file);
 }
