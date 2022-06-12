@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `projeto` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `projeto`;
 -- MySQL dump 10.13  Distrib 8.0.29, for macos12 (x86_64)
 --
 -- Host: 127.0.0.1    Database: projeto
@@ -38,7 +40,7 @@ CREATE TABLE `humidade` (
 
 LOCK TABLES `humidade` WRITE;
 /*!40000 ALTER TABLE `humidade` DISABLE KEYS */;
-INSERT INTO `humidade` VALUES (1,'15','2022/04/04 16:00;15\r\n','2022/04/04 16:00','humidade'),(2,'814','2022-06-11 15:17:20;814\n','2022-06-11 15:17:20','humidade'),(3,'810','2022-06-11 15:18:21;810\n','2022-06-11 15:18:21','humidade'),(4,'810','2022-06-11 15:18:24;810\n','2022-06-11 15:18:24','humidade'),(5,'802','2022-06-11 15:20:17;802\n','2022-06-11 15:20:17','humidade');
+INSERT INTO `humidade` VALUES (2,'814','2022-06-11 15:17:20;814\n','2022-06-11 15:17:20','humidade'),(3,'810','2022-06-11 15:18:21;810\n','2022-06-11 15:18:21','humidade'),(4,'810','2022-06-11 15:18:24;810\n','2022-06-11 15:18:24','humidade'),(5,'802','2022-06-11 15:20:17;802\n','2022-06-11 15:20:17','humidade');
 /*!40000 ALTER TABLE `humidade` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145,7 +147,7 @@ CREATE TABLE `luminosidade` (
 
 LOCK TABLES `luminosidade` WRITE;
 /*!40000 ALTER TABLE `luminosidade` DISABLE KEYS */;
-INSERT INTO `luminosidade` VALUES (1,'12','2022/04/04 16:00;12\r\n','2022/04/04 16:00','luminosidade'),(2,'0','2022-06-11 15:17:20;0\n','2022-06-11 15:17:20','luminosidade'),(3,'0','2022-06-11 15:18:21;0\n','2022-06-11 15:18:21','luminosidade'),(4,'0','2022-06-11 15:18:24;0\n','2022-06-11 15:18:24','luminosidade'),(5,'0','2022-06-11 15:20:17;0\n','2022-06-11 15:20:17','luminosidade');
+INSERT INTO `luminosidade` VALUES (2,'0','2022-06-11 15:17:20;0\n','2022-06-11 15:17:20','luminosidade'),(3,'0','2022-06-11 15:18:21;0\n','2022-06-11 15:18:21','luminosidade'),(4,'0','2022-06-11 15:18:24;0\n','2022-06-11 15:18:24','luminosidade'),(5,'0','2022-06-11 15:20:17;0\n','2022-06-11 15:20:17','luminosidade');
 /*!40000 ALTER TABLE `luminosidade` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,7 +228,7 @@ CREATE TABLE `temperatura` (
 
 LOCK TABLES `temperatura` WRITE;
 /*!40000 ALTER TABLE `temperatura` DISABLE KEYS */;
-INSERT INTO `temperatura` VALUES (15,'12','2022/04/04 8:00;12\r\n','2022/04/04 8:00','temperatura'),(16,'15','2022/04/04 8:00;15\r\n','2022/04/04 8:00','temperatura'),(22,'21','2022-06-11 15:20:17;-0.49\n','2022-06-11 15:20:17','temperatura');
+INSERT INTO `temperatura` VALUES (22,'21','2022-06-11 15:20:17;-0.49\n','2022-06-11 15:20:17','temperatura');
 /*!40000 ALTER TABLE `temperatura` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -273,4 +275,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-11 19:17:15
+-- Dump completed on 2022-06-12 18:32:54
