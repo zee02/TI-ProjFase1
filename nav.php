@@ -11,7 +11,7 @@ if (session_status() == PHP_SESSION_NONE) {
 	<!--Barra de navegação-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container-fluid">
-			<a class="nav-link" aria-current="page" href="dashboard.php"><img class="logotipo" src="images\logo.png" alt="Logotipo do website"></img></a>
+			<a class="nav-link" aria-current="page" href="dashboard.php"><img class="logotipo" src="images/logo.png" alt="Logotipo do website"></img></a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -19,9 +19,6 @@ if (session_status() == PHP_SESSION_NONE) {
 				<ul class="navbar-nav">
 					<li class="nav-item">
 						<a class="nav-link active" aria-current="page" href="dashboard.php">Dashboard</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="historico.php">Histórico</a>
 					</li>
 				</ul>
 				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
