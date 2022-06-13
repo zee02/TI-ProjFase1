@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
 
-include $_SERVER["DOCUMENT_ROOT"]."/Ti-ProjFase1/connection.php";
+include $_SERVER["DOCUMENT_ROOT"] . "/Ti-ProjFase1/connection.php";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
@@ -13,7 +13,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         FILE_APPEND;
 
         $query = "insert into {$nome} (hora,valor,log,nome) values ('{$hora}', '{$valor}', '{$log}', '{$nome}')";
-
+        mysqli_query($con, $query);
+    } elseif (isset($_POST['webcam'])) {
+        $nome = "webcam";
+        $valor = 1;
+        date_default_timezone_set('Europe/London');
+        $dt = new DateTime();
+        $hora = $dt->format('Y/m/d H:i:s');
+        $log = $hora . ";" . $valor . PHP_EOL;
+        $query = "insert into webcam(hora,valor,log,nome) values ('{$hora}', '{$valor}', '{$log}', '{$nome}')";
         mysqli_query($con, $query);
     } else {
         echo "Erro na API";
@@ -31,5 +39,3 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 } else {
     echo "metodo errado";
 }
-
-?>
