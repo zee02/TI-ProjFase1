@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
 
-include('../connection.php');
+include $_SERVER["DOCUMENT_ROOT"]."/Ti-ProjFase1/connection.php";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 

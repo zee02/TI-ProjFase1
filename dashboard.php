@@ -25,9 +25,9 @@ $query_luminosidade = "select * from luminosidade ORDER BY id DESC LIMIT 1";
 $result = $con->query($query_luminosidade);
 $row_luminosidade = $result->fetch_array(MYSQLI_ASSOC);
 
-//$query_movimento = "select * from movimento ORDER BY id DESC LIMIT 1";
-//$result = $con->query($query_movimento);
-//$row_movimento = $result->fetch_array(MYSQLI_ASSOC);
+// $query_movimento = "select * from movimento ORDER BY id DESC LIMIT 1";
+// $result = $con->query($query_movimento);
+// $row_movimento = $result->fetch_array(MYSQLI_ASSOC);
 
 
 $query_porta = "select * from porta ORDER BY id DESC LIMIT 1";
@@ -41,6 +41,8 @@ $row_lampada = $result->fetch_array(MYSQLI_ASSOC);
 $query_incendio = "select * from incendio ORDER BY id DESC LIMIT 1";
 $result = $con->query($query_incendio);
 $row_incendio = $result->fetch_array(MYSQLI_ASSOC);
+
+
 ?>
 
 
@@ -172,7 +174,7 @@ $row_incendio = $result->fetch_array(MYSQLI_ASSOC);
                     <?php
                     }
                     ?>
-                    <div class="card-footer" style="text-align: center;">Atualização: <?php echo $row_incendio["hora"] ?> - <a id="historico" href=”#”>Histórico</a></div>
+                    <div class="card-footer" style="text-align: center;">Atualização: <?php echo $row_incendio["hora"] ?> - <a id="historico" href="historico_incendio.php">Histórico</a></div>
                 </div>
             </div>
             <div class="col-sm-4" style="padding-top:20px">
@@ -201,7 +203,7 @@ $row_incendio = $result->fetch_array(MYSQLI_ASSOC);
                     <?php  
                         }
                     ?>
-                    <div class="card-footer" style="text-align: center;">Atualização: <?php echo $row_lampada["hora"] ?> - <a id="historico" href=”#”>Histórico</a></div>
+                    <div class="card-footer" style="text-align: center;">Atualização: <?php echo $row_lampada["hora"] ?> - <a id="historico" href="historico_lampada.php">Histórico</a></div>
                 </div>
             </div>
 
@@ -212,7 +214,7 @@ $row_incendio = $result->fetch_array(MYSQLI_ASSOC);
                     <div class="card-body">
                          <img src='images/webcam.jpg?id=".time()."' alt="webcam" id="webcam" style="width: 230px;"  class="img">
                     </div>
-                    <div class="card-footer" style="text-align: center;">Atualização: <?php echo $row_lampada["hora"] ?> - <a id="historico" href=”#”>Histórico</a></div>
+                    <div class="card-footer" style="text-align: center;">Atualização: <?php echo $row_lampada["hora"] ?></div>
                 </div>
             </div>
         </div>
@@ -235,19 +237,93 @@ $row_incendio = $result->fetch_array(MYSQLI_ASSOC);
                     <td><?php echo $row_temperatura["nome"]?></td>
                     <td><?php echo $row_temperatura["valor"] . "º" ?></td>
                     <td><?php echo $row_temperatura["hora"] ?></td>
-                    <td><span class="badge rounded-pill bg-danger">Desativo</span></td>
+                    <?php 
+                        if($row_temperatura["valor"] == 0){
+                        ?>
+                            <td><span class="badge rounded-pill bg-danger">Desativo</span></td>
+                        <?php 
+                        } elseif($row_temperatura["valor"] > 0 && $row_temperatura["valor"] < 50) {
+                        ?>
+                            <td><span class="badge rounded-pill bg-warning text-dark">Warning</span></td>
+                        <?php 
+                        }else {
+                        ?>
+                            <td><span class="badge rounded-pill bg-danger">Muito Forte</span></td>
+                        <?php 
+                        }
+                     ?>
                 </tr>
                 <tr>
                     <td><?php echo $row_humidade["nome"]?></td>
                     <td><?php echo $row_humidade["valor"]?>%</td>
                     <td><?php echo $row_humidade["hora"]?></td>
-                    <td><span class="badge rounded-pill bg-warning text-dark">Warning</span></td>
+                    <?php 
+                        if($row_humidade["valor"] == 0){
+                        ?>
+                            <td><span class="badge rounded-pill bg-danger">Desativo</span></td>
+                        <?php 
+                        } elseif($row_humidade["valor"] > 0 && $row_humidade["valor"] < 70) {
+                        ?>
+                            <td><span class="badge rounded-pill bg-warning text-dark">Warning</span></td>
+                        <?php 
+                        }else {
+                        ?>
+                            <td><span class="badge rounded-pill bg-danger">Muito Forte</span></td>
+                        <?php 
+                        }
+                     ?>
                 </tr>
                 <tr>
                     <td><?php echo $row_luminosidade["nome"]?></td>
-                    <td><?php echo $row_luminosidade["valor"]?>%</td>
+                    <td><?php echo $row_luminosidade["valor"]?></td>
                     <td><?php echo $row_luminosidade["hora"]?></td>
-                    <td><span class="badge rounded-pill bg-danger">Muito Forte</span></td>
+                    <?php 
+                        if($row_luminosidade["valor"] == 0){
+                        ?>
+                            <td><span class="badge rounded-pill bg-danger">Desativo</span></td>
+                        <?php 
+                        } elseif($row_luminosidade["valor"] == 1) {
+                        ?>
+                            <td><span class="badge rounded-pill bg-warning text-dark">Médio</span></td>
+                        <?php 
+                        }else {
+                        ?>
+                            <td><span class="badge rounded-pill bg-danger">Muito Forte</span></td>
+                        <?php 
+                        }
+                     ?>
+                </tr>
+                <tr>
+                    <td><?php echo $row_incendio["nome"]?></td>
+                    <td><?php echo $row_incendio["valor"]?></td>
+                    <td><?php echo $row_incendio["hora"]?></td>
+                    <?php 
+                        if($row_incendio["valor"] == 0){
+                        ?>
+                            <td><span class="badge rounded-pill bg-danger">Desativo</span></td>
+                        <?php 
+                        }else {
+                        ?>
+                            <td><span class="badge rounded-pill bg-danger">Ativo</span></td>
+                        <?php 
+                        }
+                     ?>
+                </tr>
+                <tr>
+                    <td><?php echo $row_porta["nome"]?></td>
+                    <td><?php echo $row_porta["valor"]?></td>
+                    <td><?php echo $row_porta["hora"]?></td>
+                    <?php 
+                        if($row_porta["valor"] == 0){
+                        ?>
+                            <td><span class="badge rounded-pill bg-danger">Fechada</span></td>
+                        <?php 
+                        }else {
+                        ?>
+                            <td><span class="badge rounded-pill bg-success">Aberta</span></td>
+                        <?php 
+                        }
+                     ?>
                 </tr>
             </tbody>
         </table>
