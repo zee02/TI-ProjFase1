@@ -19,6 +19,13 @@ $hora_porta = file_get_contents("files/porta/hora.txt");
 $log_porta = file_get_contents("files/porta/log.txt");
 $nome_porta = file_get_contents("files/porta/nome.txt");
 
+#Código para Armazenar dados relacionados com o sensor de porta em variáveis
+$valor_alarme = file_get_contents("files/alarme/valor.txt");
+$hora_alarme = file_get_contents("files/alarme/hora.txt");
+$log_alarme = file_get_contents("files/alarme/log.txt");
+$nome_alarme = file_get_contents("files/alarme/nome.txt");
+
+
 /*
 Verifica o método que está a ser utilizado para enviar a informação para o 
 servidor e se tudo estiver correto escreve valores enviados pelos sensores em ficheiros.
