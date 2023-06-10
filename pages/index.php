@@ -6,10 +6,12 @@ $username_admin = "admin";
 $password_admin = "admin";
 $username_worker = "worker";
 $password_worker = "worker";
+$username_analist = "analist";
+$password_analist = "analist";
 
 //SISTEMA DE LOGIN
 if (isset($_POST['username']) && isset($_POST['password'])) {
-    if ($_POST['username'] == $username_admin && $_POST['password'] == $password_admin || $_POST['username'] == $username_worker && $_POST['password'] == $password_worker) {
+    if ($_POST['username'] == $username_admin && $_POST['password'] == $password_admin || $_POST['username'] == $username_worker && $_POST['password'] == $password_worker || $_POST['username'] == $username_analist && $_POST['password'] == $password_analist) {
         echo "Login com sucesso..." . "<br>";
         $_SESSION["username"] = $_POST['username'];
         header('Location: dashboard.php');
@@ -18,6 +20,26 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     }
 } else {
     $inserido = "Nada inserido...";
+}
+
+//SISTEMA DE PERMISSOES
+if (isset($_SESSION['user_type'])) {
+    $userType = $_SESSION['user_type'];
+
+    // Verificar o tipo de usuário
+    if ($userType === 'worker') {
+        // Redirecionar para dashboard.php
+        header('Location: dashboard.php');
+        exit;
+    } elseif ($userType === 'analist') {
+        // Redirecionar para historico.php ou estatisticas.php
+        header('Location: historico.php');
+        exit;
+    } elseif ($userType === 'admin') {
+        // Redirecionar para dashboard.php ou qualquer outra página com permissões totais
+        header('Location: dashboard.php');
+        exit;
+    }
 }
 ?>
 

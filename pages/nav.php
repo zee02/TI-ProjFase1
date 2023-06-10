@@ -18,13 +18,19 @@ if (session_status() == PHP_SESSION_NONE) {
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
+                    <?php if ($_SESSION['username'] != 'analist') { ?>
                         <a class="nav-link active" aria-current="page" href="dashboard.php">Dashboard</a>
+                    <?php } ?>
                     </li>
                     <li class="nav-item">
+                    <?php if ($_SESSION['username'] != 'analist' && $_SESSION['username'] != 'worker') { ?>
                         <a class="nav-link" href="historico.php">Histórico</a>
+                    <?php } ?>
                     </li>
                     <li class="nav-item">
+                    <?php if ($_SESSION['username'] != 'worker') { ?>
                         <a class="nav-link" href="estatisticas.php">Estatisticas</a>
+                    <?php } ?>
                     </li>
                 </ul>
                 

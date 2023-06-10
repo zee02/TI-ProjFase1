@@ -3,3 +3,6 @@ Password admin: admin
 
 Username Worker: worker
 Password Worker: worker
+
+Username Analist: analist
+Password Analist: analist

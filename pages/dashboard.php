@@ -1,7 +1,8 @@
 <?php
 #Verifica se o utilizador está a aceder à dashboard com sessão iniciada
 session_start();
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['username']) || ($_SESSION['username'] != 'admin' && $_SESSION['username'] != 'worker')) {
+    header("Location: estatisticas.php");
     header("refresh: 5;url=index.php");
     die("Acesso restrito.");
 }
@@ -27,7 +28,6 @@ $nome_humidade = file_get_contents("../api/files/humidade/nome.txt");
 $valor_webcam = file_get_contents("../api/files/webcam/valor.txt");
 $hora_webcam  = file_get_contents("../api/files/webcam/hora.txt");
 $nome_webcam  = file_get_contents("../api/files/webcam/nome.txt");
-
 
 ?>
 
