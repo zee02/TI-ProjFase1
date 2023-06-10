@@ -23,7 +23,11 @@ if (session_status() == PHP_SESSION_NONE) {
                     <li class="nav-item">
                         <a class="nav-link" href="historico.php">Histórico</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="estatisticas.php">Estatisticas</a>
+                    </li>
                 </ul>
+                
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item espaco">
                         <a class="nav-link"><?php echo "Utilizador: " . $_SESSION['username']; ?></a>
