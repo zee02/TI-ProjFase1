@@ -7,6 +7,9 @@ if (!isset($_SESSION['username']) || ($_SESSION['username'] != 'admin' && $_SESS
     die("Acesso restrito.");
 }
 
+$username = $_SESSION['username'];
+
+
 //Buscar os valores pretendidos dos ficheiros txt
 $valor_temperatura = file_get_contents("../api/files/temperatura/valor.txt");
 $hora_temperatura = file_get_contents("../api/files/temperatura/hora.txt");
@@ -156,9 +159,15 @@ $nome_webcam  = file_get_contents("../api/files/webcam/nome.txt");
                     <div class="card-footer" style="text-align: center;">Atualização:
                         <?php echo $hora_webcam ?> - <a id="historico" href="../pages/historico.php">Histórico</a>
                     </div>
-                    <div class="card-footer" style="text-align: center;">
-                        <button onclick="executarCaptura()">Capturar Imagem</button>
-                    </div>
+                    <?php
+                    if ($username == 'admin' && isset($_SESSION['token']) && $_SESSION['token'] == $_SESSION['token']) {
+                    ?>
+                        <div class="card-footer" style="text-align: center;">
+                            <button onclick="executarCaptura()">Capturar Imagem</button>
+                        </div>
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
 

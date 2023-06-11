@@ -1,6 +1,7 @@
 <?php
 session_start();
-//VARIAVEIS DOS UTILIZADORES
+
+// Variáveis dos utilizadores
 $invalido = null;
 $username_admin = "admin";
 $password_admin = "admin";
@@ -9,20 +10,54 @@ $password_worker = "worker";
 $username_analist = "analist";
 $password_analist = "analist";
 
-//SISTEMA DE LOGIN
+// Sistema de login
 if (isset($_POST['username']) && isset($_POST['password'])) {
-    if ($_POST['username'] == $username_admin && $_POST['password'] == $password_admin || $_POST['username'] == $username_worker && $_POST['password'] == $password_worker || $_POST['username'] == $username_analist && $_POST['password'] == $password_analist) {
+    if ($_POST['username'] == $username_admin && $_POST['password'] == $password_admin) {
         echo "Login com sucesso..." . "<br>";
         $_SESSION["username"] = $_POST['username'];
+        $_SESSION['user_type'] = 'admin'; // Define o tipo de user como 'admin'
+        $_SESSION['token'] = gerarTokenAcesso(); // Gera um token de acesso
         header('Location: dashboard.php');
+    } elseif ($_POST['username'] == $username_worker && $_POST['password'] == $password_worker) {
+        echo "Login com sucesso..." . "<br>";
+        $_SESSION["username"] = $_POST['username'];
+        $_SESSION['user_type'] = 'worker'; // Define o tipo de usuário como 'worker'
+        header('Location: dashboard.php');
+    } elseif ($_POST['username'] == $username_analist && $_POST['password'] == $password_analist) {
+        echo "Login com sucesso..." . "<br>";
+        $_SESSION["username"] = $_POST['username'];
+        $_SESSION['user_type'] = 'analist'; // Define o tipo de user como 'analist'
+        header('Location: historico.php');
     } else {
-        $invalido = "Login invalido...";
+        $invalido = "Login inválido...";
     }
 } else {
     $inserido = "Nada inserido...";
 }
 
-//SISTEMA DE PERMISSOES
+// Função para gerar o token de acesso
+function gerarTokenAcesso() {
+    $header = [
+        'typ' => 'JWT',
+        'alg' => 'HS256'
+    ];
+
+    $payload = [
+        'user_type' => $_SESSION['user_type'],
+        'username' => $_SESSION['username'],
+        'exp' => time() + 3600 // Expira em 1 hora
+    ];
+
+    $header_encoded = base64_encode(json_encode($header));
+    $payload_encoded = base64_encode(json_encode($payload));
+    $signature = hash_hmac('sha256', $header_encoded . '.' . $payload_encoded, 'chave_secreta');
+
+    $token = $header_encoded . '.' . $payload_encoded . '.' . $signature;
+
+    return $token;
+}
+
+// Sistema de permissões
 if (isset($_SESSION['user_type'])) {
     $userType = $_SESSION['user_type'];
 
@@ -33,7 +68,7 @@ if (isset($_SESSION['user_type'])) {
         exit;
     } elseif ($userType === 'analist') {
         // Redirecionar para historico.php ou estatisticas.php
-        header('Location: historico.php');
+        header('Location: estatisticas.php');
         exit;
     } elseif ($userType === 'admin') {
         // Redirecionar para dashboard.php ou qualquer outra página com permissões totais
@@ -42,6 +77,7 @@ if (isset($_SESSION['user_type'])) {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html>
