@@ -44,7 +44,7 @@ $nome_webcam  = file_get_contents("../api/files/webcam/nome.txt");
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="../css/style.css" rel="stylesheet">
     <link rel="icon" href="../images/logo.png">
-    <title>Histórico</title>
+    <title>Dashboard</title>
 </head>
 
 <body>

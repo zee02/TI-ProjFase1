@@ -20,50 +20,54 @@ if ($_SESSION['username'] != 'admin'  && $_SESSION['username'] != 'analist') {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/startbootstrap-sb-admin-2@4.1.4/dist/css/sb-admin-2.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="../css/style.css" rel="stylesheet">
+    <link rel="icon" href="../images/logo.png">
     <style>
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        
-        .gallery-row {
-            display: table-row;
-        }
+    .gallery-item {
+      margin-bottom: 30px;
+    }
 
-        .gallery-cell {
-            display: table-cell;
-            text-align: center;
-            padding: 10px;
-        }
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+    }
 
-        .gallery-cell img {
-            width: 200px;
-            height: 200px;
-        }
+    .card-header.borda {
+      margin-top: 20px;
+      padding: 10px;
+    }
+
+    .card-header.borda h1.title {
+      margin: 0;
+    }
     </style>
 </head>
 <body>
     <?php include 'nav.php'; ?>
     
-    <div class="gallery">
+     <div class="card-header borda">
+        <h1 class="title" style="font-size: 24px;">Galeria de Fotos</h1>
+    </div>
+    <div class="container">
+      <div class="row">
         <?php
-        // Diretório onde estão as imagens
-        $diretorio = '../images/camImages';
+        $imageDirectory = "../images/camImages";
+        $imagePaths = glob($imageDirectory . '/*.jpg', GLOB_BRACE);
+        $numOfItems = count($imagePaths);
 
-        // Obtém todas as imagens do diretório
-        $imagens = glob($diretorio . '/*.jpg');
-
-         // Exibe as imagens na galeria
-        foreach ($imagens as $imagem) {
-            echo '<div class="gallery-row">';
-            echo '<div class="gallery-cell">';
-            echo '<img src="' . $imagem . '" alt="Imagem">';
-            echo '</div>';
-            echo '</div>';
+        foreach ($imagePaths as $imagePath) {
+            ?>
+            <div class="col-md-4 gallery-item">
+                <img src="<?php echo $imagePath; ?>" alt="Imagem">
+            </div>  
+        <?php
         }
         ?>
+       </div>
     </div>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 </body>
 </html>

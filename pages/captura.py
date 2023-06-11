@@ -11,16 +11,18 @@ if not ret:
     cv2.destroyAllWindows()
     exit()
 
-#Redimensiona a imagem para ter no maximo 1 mb
 scale_percent = 100
 width = int(frame.shape[1] * scale_percent / 100)
 height = int(frame.shape[0] * scale_percent / 100)
 dim = (width, height)
 resized_frame = cv2.resize(frame, dim, interpolation=cv2.INTER_AREA)
 
-cv2.imwrite("../images/camImages/webcam.jpg", resized_frame, [cv2.IMWRITE_JPEG_QUALITY, 90])
+# Cria um nome de arquivo com base na data e hora atual
+current_time = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+filename = f"../images/camImages/webcam_{current_time}.jpg"
 
-current_time = datetime.datetime.now().strftime("%Y/%m/%d %H:%M")
+cv2.imwrite(filename, resized_frame, [cv2.IMWRITE_JPEG_QUALITY, 90])
+
 data = {"nome": "webcam", "hora": current_time, "valor": "0"}
 
 url = "http://127.0.0.1/TI-ProjFase1/api/api.php"
