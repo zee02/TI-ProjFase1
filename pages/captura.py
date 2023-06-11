@@ -18,7 +18,7 @@ height = int(frame.shape[0] * scale_percent / 100)
 dim = (width, height)
 resized_frame = cv2.resize(frame, dim, interpolation=cv2.INTER_AREA)
 
-cv2.imwrite("../images/webcam.jpg", resized_frame, [cv2.IMWRITE_JPEG_QUALITY, 90])
+cv2.imwrite("../images/camImages/webcam.jpg", resized_frame, [cv2.IMWRITE_JPEG_QUALITY, 90])
 
 current_time = datetime.datetime.now().strftime("%Y/%m/%d %H:%M")
 data = {"nome": "webcam", "hora": current_time, "valor": "0"}

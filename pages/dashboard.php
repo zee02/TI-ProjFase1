@@ -154,7 +154,7 @@ $nome_webcam  = file_get_contents("../api/files/webcam/nome.txt");
                         <b>Imagem</b>
                     </div>
                     <div class="card-body borda">
-                        <?php echo "<img src='../images/webcam.jpg?id=" . time() . "' style='width:45%'>"; ?>
+                        <?php echo "<img src='../images/camImages/webcam.jpg?id=" . time() . "' style='width:45%'>"; ?>
                     </div>
                     <div class="card-footer" style="text-align: center;">Atualização:
                         <?php echo $hora_webcam ?> - <a id="historico" href="../pages/historico.php">Histórico</a>

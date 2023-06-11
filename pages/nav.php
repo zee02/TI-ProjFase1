@@ -32,6 +32,11 @@ if (session_status() == PHP_SESSION_NONE) {
                         <a class="nav-link" href="estatisticas.php">Estatisticas</a>
                     <?php } ?>
                     </li>
+                    <li class="nav-item">
+                    <?php if ($_SESSION['username'] != 'analist' && $_SESSION['username'] != 'worker') { ?>
+                        <a class="nav-link" href="galeria.php">Galeria</a>
+                    <?php } ?>
+                    </li>
                 </ul>
                 
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
