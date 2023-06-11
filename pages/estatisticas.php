@@ -1,11 +1,24 @@
+<?php
+session_start();
+//Verifica se a sessão está desligada e, se estiver, liga a mesma
+if (session_status() == PHP_SESSION_DISABLED) {
+  session_start();
+}
+if ($_SESSION['username'] != 'admin' && $_SESSION['username'] != 'analist') {
+  die("Acesso restrito.");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<?php
+  <?php
   header('Cache-Control: no-cache, no-store, must-revalidate');
   header('Pragma: no-cache');
   header('Expires: 0');
-?>
+  ?>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Página de Estatísticas</title>
@@ -21,6 +34,7 @@
     }
   </style>
 </head>
+
 <body id="page-top">
   <div id="wrapper">
     <?php include('nav.php'); ?>
@@ -79,6 +93,17 @@
                 <div class="card-body">
                   <p id="counterWebcam"></p>
                 </div>
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                    <h6 class="m-0 font-weight-bold text-primary">Gráfico de Temperatura</h6>
+                    <img src="../images/temperatura.png" alt="Imagem Temperatura" class="card-img-right card-img-icon">
+                  </div>
+                  <div class="card-body">
+                    <div class="chart-area">
+                      <canvas id="chartTemperatura"></canvas>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -91,4 +116,5 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="../js/script.js"></script>
 </body>
+
 </html>

@@ -1,8 +1,14 @@
 <?php
+session_start();
 //Verifica se a sessão está desligada e, se estiver, liga a mesma
 if (session_status() == PHP_SESSION_DISABLED) {
     session_start();
 }
+
+if ($_SESSION['username'] != 'admin') {
+    die("Acesso restrito.");
+}
+
 //Logs para os sensores
 $get_logs_temp = file_get_contents("../api/files/temperatura/log.txt");
 $get_logs_humidade = file_get_contents("../api/files/humidade/log.txt");
@@ -51,8 +57,7 @@ array_pop($get_logs_alarme);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="authors" content="João Bettencourt e José Fernandes">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="../css/style.css" rel="stylesheet">
     <link rel="icon" href="../images/logo.png">
     <title>Histórico</title>
@@ -89,9 +94,9 @@ array_pop($get_logs_alarme);
                             $gp = explode(';', $gp);
                             echo "<tr>";
                             echo "<td>" . $gp[0] . "</td>";
-                            if($gp[1] == 1){
+                            if ($gp[1] == 1) {
                                 echo "<td>" . "ON"  . "</td>";
-                            }else{
+                            } else {
                                 echo "<td>" . "OFF" . "</td>";
                             }
                             echo "</tr>";
@@ -166,9 +171,9 @@ array_pop($get_logs_alarme);
                             $ga = explode(';', $ga);
                             echo "<tr>";
                             echo "<td>" . $ga[0] . "</td>";
-                            if($ga[1] == 1){
+                            if ($ga[1] == 1) {
                                 echo "<td>" . "ON"  . "</td>";
-                            }else{
+                            } else {
                                 echo "<td>" . "OFF" . "</td>";
                             }
                             echo "</tr>";
@@ -215,8 +220,7 @@ array_pop($get_logs_alarme);
         </div>
     </div>
     <br>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
 </body>
 
