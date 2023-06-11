@@ -149,12 +149,20 @@ $nome_webcam  = file_get_contents("../api/files/webcam/nome.txt");
                 </div>
             </div>
             <div class="col-sm-4" style="padding-top:20px">
-                <div class="card">
-                    <div class="card-header borda">
-                        <b>Imagem</b>
-                    </div>
-                    <div class="card-body borda">
-                        <?php echo "<img src='../images/camImages/webcam.jpg?id=" . time() . "' style='width:45%'>"; ?>
+            <div class="card">
+                <div class="card-header borda">
+                    <b>Imagem</b>
+                </div>
+                <div class="card-body borda">
+                    <?php
+                    $imagemMaisRecente = "";
+                    foreach (glob("../images/camImages/webcam_*.jpg") as $imagem) {
+                        if (empty($imagemMaisRecente) || filemtime($imagem) > filemtime($imagemMaisRecente)) {
+                            $imagemMaisRecente = $imagem;
+                        }
+                    }
+                    echo "<img src='" . $imagemMaisRecente . "?id=" . time() . "' style='width:45%'>";
+                    ?>
                     </div>
                     <div class="card-footer" style="text-align: center;">Atualização:
                         <?php echo $hora_webcam ?> - <a id="historico" href="../pages/historico.php">Histórico</a>
@@ -170,6 +178,7 @@ $nome_webcam  = file_get_contents("../api/files/webcam/nome.txt");
                     ?>
                 </div>
             </div>
+
 
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script>

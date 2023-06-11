@@ -23,7 +23,10 @@ filename = f"../images/camImages/webcam_{current_time}.jpg"
 
 cv2.imwrite(filename, resized_frame, [cv2.IMWRITE_JPEG_QUALITY, 90])
 
-data = {"nome": "webcam", "hora": current_time, "valor": "0"}
+# Format the current_time as "year/month/day hour"
+current_time_formatted = datetime.datetime.now().strftime("%Y/%m/%d %H:%M:%S")
+
+data = {"nome": "webcam", "hora": current_time_formatted, "valor": "0"}
 
 url = "http://127.0.0.1/TI-ProjFase1/api/api.php"
 

@@ -32,8 +32,9 @@ if ($_SESSION['username'] != 'admin'  && $_SESSION['username'] != 'analist') {
     }
 
     .card-header.borda {
-      margin-top: 20px;
       padding: 10px;
+      margin: 20px;
+      margin-top: 10px;
     }
 
     .card-header.borda h1.title {
