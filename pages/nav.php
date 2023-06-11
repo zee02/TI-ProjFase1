@@ -4,6 +4,13 @@ if (session_status() == PHP_SESSION_NONE) {
 	session_start();
 }
 ?>
+<style>
+    .img-text-size{
+        max-width: 20px;
+        height: auto;
+        margin-right: 5px;
+    }
+</style>
 
 <body>
     <!--Barra de navegação-->
@@ -41,7 +48,19 @@ if (session_status() == PHP_SESSION_NONE) {
                 
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item espaco">
-                        <a class="nav-link"><?php echo "Utilizador: " . $_SESSION['username']; ?></a>
+                        <a class="nav-link"><?php echo "Utilizador: " . $_SESSION['username']; ?> 
+                        <?php
+                            if( $_SESSION['username'] == 'admin'){ ?>
+                                <img class="img-text-size" src="../images/admin.png" alt="admin">
+                            <?php }
+                            if( $_SESSION['username'] == 'worker'){ ?>
+                                <img class="img-text-size" src="../images/worker.png" alt="worker">
+                            <?php } 
+                            if( $_SESSION['username'] == 'analist'){ ?>
+                                <img class="img-text-size" src="../images/analist.png" alt="analist">
+                            <?php } ?>
+                        <img src="images/" alt=""> 
+                        </a>
                     </li>
 
                     <li class="nav-item">
