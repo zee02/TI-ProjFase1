@@ -10,6 +10,7 @@ $password_worker = "worker";
 $username_analist = "analist";
 $password_analist = "analist";
 
+
 // Sistema de login
 if (isset($_POST['username']) && isset($_POST['password'])) {
     if ($_POST['username'] == $username_admin && $_POST['password'] == $password_admin) {

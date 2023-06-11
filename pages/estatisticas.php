@@ -93,17 +93,6 @@ if ($_SESSION['username'] != 'admin' && $_SESSION['username'] != 'analist') {
                 <div class="card-body">
                   <p id="counterWebcam"></p>
                 </div>
-                <div class="card shadow mb-4">
-                  <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                    <h6 class="m-0 font-weight-bold text-primary">Gráfico de Temperatura</h6>
-                    <img src="../images/temperatura.png" alt="Imagem Temperatura" class="card-img-right card-img-icon">
-                  </div>
-                  <div class="card-body">
-                    <div class="chart-area">
-                      <canvas id="chartTemperatura"></canvas>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
